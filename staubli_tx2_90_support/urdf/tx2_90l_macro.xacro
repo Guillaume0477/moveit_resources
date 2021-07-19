@@ -111,16 +111,16 @@
     </link>
     <link name="${prefix}link_tool">
       <visual>
-        <origin xyz="0 0 0" rpy="0  0 0"/>
+        <origin xyz="0 0 0" rpy="${radians(-90)} 0 0"/>
         <geometry>
-          <mesh filename="package://staubli_tx2_90_support/meshes/tx2_90l/visual/tool_meter.stl"/>
+          <mesh filename="package://staubli_tx2_90_support/meshes/tx2_90l/visual/true_tool_meter.stl"/>
         </geometry>
         <xacro:material_staubli_ral_grey_aluminium />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="${radians(90)} 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://staubli_tx2_90_support/meshes/tx2_90l/collision/convex/tool/one_tool_meter.obj"/>
+          <mesh filename="package://staubli_tx2_90_support/meshes/tx2_90l/collision/convex/tool/true_tool_meter.obj"/>
         </geometry>
       </collision>
     </link>
@@ -164,7 +164,7 @@
       (1) effort limit = 318 Nm if floor mounted
       (2) effort limit = 75 Nm if wall mounted -->
       <!-- nominal velocity limits are used -->
-      <limit lower="${radians(-180)}" upper="${radians(180)}" effort="318.0" velocity="${radians(225)}" />
+      <limit lower="${-3.0}" upper="${0.0}" effort="318.0" velocity="${radians(225)}" />
     </joint>
     <joint name="${prefix}joint_2" type="revolute">
       <origin xyz="0.050 0 0" rpy="0 0 0"/>
@@ -172,7 +172,7 @@
       <child link="${prefix}link_2"/>
       <axis xyz="0 1 0"/>
       <!-- nominal velocity limits are used -->
-      <limit lower="${radians(-130)}" upper="${radians(147.5)}" effort="130.0" velocity="${radians(180)}" />
+      <limit lower="${-0.7}" upper="${1.57}" effort="130.0" velocity="${radians(180)}" />
     </joint>
     <joint name="${prefix}joint_3" type="revolute">
       <origin xyz="0 0.05 0.500" rpy="0 0 0"/>
@@ -180,7 +180,7 @@
       <child link="${prefix}link_3"/>
       <axis xyz="0 1 0"/>
       <!-- nominal velocity limits are used -->
-      <limit lower="${radians(-145)}" upper="${radians(145)}" effort="65.0" velocity="${radians(270)}" />
+      <limit lower="${-0.7}" upper="${2.53}" effort="65.0" velocity="${radians(270)}" />
     </joint>
     <joint name="${prefix}joint_4" type="revolute">
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -188,7 +188,7 @@
       <child link="${prefix}link_4"/>
       <axis xyz="0 0 1"/>
       <!-- nominal velocity limits are used -->
-      <limit lower="${radians(-270)}" upper="${radians(270)}" effort="34.0" velocity="${radians(450)}" />
+      <limit lower="${-2.27}" upper="${2.27}" effort="34.0" velocity="${radians(450)}" />
     </joint>
     <joint name="${prefix}joint_5" type="revolute">
       <origin xyz="0 0 0.550" rpy="0 0 0"/>
@@ -196,7 +196,7 @@
       <child link="${prefix}link_5"/>
       <axis xyz="0 1 0"/>
       <!-- nominal velocity limits are used -->
-      <limit lower="${radians(-115)}" upper="${radians(140)}" effort="29.0" velocity="${radians(370)}" />
+      <limit lower="${-2}" upper="${2.39}" effort="29.0" velocity="${radians(370)}" />
     </joint>
     <joint name="${prefix}joint_6" type="revolute">
       <origin xyz="0 0 0.100" rpy="0 0 0"/>
@@ -204,9 +204,9 @@
       <child link="${prefix}link_6"/>
       <axis xyz="0 0 1"/>
       <!-- nominal velocity limits are used -->
-      <limit lower="${radians(-270)}" upper="${radians(270)}" effort="11.0" velocity="${radians(630)}" />
+      <limit lower="${radians(-180)}" upper="${radians(180)}" effort="11.0" velocity="${radians(630)}" />
     </joint>
-    <joint name="${prefix}join_tool" type="fixed">
+    <joint name="${prefix}joint_tool" type="fixed">
       <origin xyz="0 0 0" rpy="${radians(90)} 0 ${radians(-45)}"/>
       <parent link="${prefix}link_6"/>
       <child link="${prefix}link_tool"/>
@@ -215,14 +215,14 @@
     <joint name="${prefix}finger_joint1" type="prismatic">
       <parent link="${prefix}link_tool"/>
       <child link="${prefix}link_finger1"/>
-      <origin xyz="-0.006 0.28964 0.00756" rpy="${radians(-70)} 0 0"/>
+      <origin xyz="-0.006 0.28498 0.00783" rpy="${radians(-70)} 0 0"/>
       <axis xyz="1 0 0"/>
       <limit effort="20" lower="0.0" upper="0.006" velocity="0.2"/>
     </joint>
     <joint name="${prefix}finger_joint2" type="prismatic">
       <parent link="${prefix}link_tool"/>
       <child link="${prefix}link_finger2"/>
-      <origin xyz="0.006 0.28964 0.00756" rpy="${radians(-70)} 0 0"/>
+      <origin xyz="0.006 0.28498 0.00783" rpy="${radians(-70)} 0 0"/>
       <axis xyz="-1 0 0"/>
       <limit effort="20" lower="0.0" upper="0.006" velocity="0.2"/>
       <mimic joint="${prefix}finger_joint1" />
